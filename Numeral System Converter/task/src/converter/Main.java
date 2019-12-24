@@ -62,11 +62,19 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int sourceRadix = Integer.parseInt(scanner.next());
-        String sourceNumber = scanner.next();
-        int targetRadix = Integer.parseInt(scanner.next());
+        try {
+            int sourceRadix = Integer.parseInt(scanner.next());
+            String sourceNumber = scanner.next();
+            int targetRadix = Integer.parseInt(scanner.next());
 
-        String targetNumber = Converter.parseNumber(sourceRadix, sourceNumber, targetRadix);
-        System.out.println(targetNumber);
+            if (targetRadix < 1 || targetRadix > 36) {
+                throw new Exception("targetRadix incorrect");
+            }
+
+            String targetNumber = Converter.parseNumber(sourceRadix, sourceNumber, targetRadix);
+            System.out.println(targetNumber);
+        } catch (Exception e) {
+            System.out.println("error");
+        }
     }
 }
